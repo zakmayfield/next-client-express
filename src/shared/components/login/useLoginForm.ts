@@ -1,5 +1,6 @@
 import React, { FormEvent, useState } from 'react';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 interface LoginFormValues {
   username: string;
@@ -7,6 +8,8 @@ interface LoginFormValues {
 }
 
 export const useLoginForm = () => {
+  const router = useRouter();
+
   const defaultFormValues = {
     username: '',
     password: '',
@@ -34,6 +37,7 @@ export const useLoginForm = () => {
       .then((response) => {
         setIsLoading(false);
         console.log(response.data);
+        // router.push('/dashboard');
       })
       .catch((error) => {
         console.log(error);
